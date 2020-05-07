@@ -11,6 +11,14 @@ if has('vim_starting')
 	NeoBundle 'scrooloose/nerdtree'
 	NeoBundle 'tpope/vim-fugitive'
 	NeoBundle 'junegunn/fzf.vim'
+	NeoBundle 'junegunn/fzf'
+	NeoBundle 'ervandew/supertab'
+	NeoBundle 'jiangmiao/auto-paira'
+	NeoBundle 'tpope/vim-surround'
+	NeoBundle 'kana/vim-operator-replace'
+	NeoBundle 'vim-expand-region'
+	NeoBundle 'easymotion/vim-easymotion'
+	NeoBundle 'simeji/winresizer'
 	call neobundle#end()
 endif
 
@@ -76,3 +84,16 @@ augroup vimrc_fzf
     autocmd!
     autocmd FileType fzf tnoremap <buffer> <leader>z <Esc>
 augroup END
+
+map _ <Plug>(operator-replace)
+
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+
+map  <Leader>j <Plug>(easymotion-bd-w)
+nmap <Leader>j <Plug>(easymotion-overwin-w)
+map <Leader>l <Plug>(easymotion-bd-jk)
+nmap <Leader>l <Plug>(easymotion-overwin-line)
+map <Leader>k <Plug>(easymotion-bd-f)
+nmap <Leader>k <Plug>(easymotion-overwin-f)
