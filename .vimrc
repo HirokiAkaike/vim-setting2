@@ -67,13 +67,29 @@ augroup END
 
 set rtp+=/root/.fzf
   let g:fzf_buffers_jump = 1
-  nnoremap <silent> <Leader>ff :<C-u>Ag<CR>
+  nnoremap <silent> <Leader>ag :<C-u>Ag<CR>
   nnoremap <silent> <Leader>fh :<C-u>History<CR>
   nnoremap <silent> <Leader>ft :<C-u>call fzf#vim#tags(expand('<cword>'))<CR>
   nnoremap <silent> <Leader>fb :<C-u>Buffers<CR>
   nnoremap <silent> <Leader>fgs :<C-u>GFiles?<CR>
   nnoremap <silent> <Leader>fgf :<C-u>GFiles<CR>
   nnoremap <silent> <Leader>fm :<C-u>Marks<CR>
+  # カーソル下にあるwordをagで検索
+  nnoremap <silent> <leader>ff  :Ag <C-R><C-W><CR>
+  nnoremap <silent> <leader>FF  :Ag <C-R><C-A><CR>
+  # visual modeで選択したwordを検索
+  xnoremap <silent> <leader>ff  y:Ag <C-R>"<CR>
+
+  # ファイルを開く（CrtlP風、よく使います）
+  # 条件分岐はNERDTree上で使うと、ツリー内でファイルが開かれるのを防ぐために入れてます
+  autocmd VimEnter * nnoremap <silent><expr><C-P> (expand('%') =~ 'NERD_tree' ? "\<C-W>\<C-W>" : '').":Files<CR>"
+
+  # カーソル配下の文字列からファイルを開く（gfとかでうまく開けない場合に便利です。たまに使います）
+  autocmd VimEnter * nnoremap <silent><expr><leader>F (expand('%') =~ 'NERD_tree' ? "\<C-W>\<C-W>" : '').':Files'.(!empty(expand('<cword>')) ? '--query='.expand('<cword>') : '').'<CR>'
+
+
+
+
   let g:fzf_layout = { 'down': '30%' }
   let g:fzf_action = {
     \ 'ctrl-t': 'tab split',
